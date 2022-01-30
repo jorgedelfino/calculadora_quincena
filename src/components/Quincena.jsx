@@ -88,7 +88,7 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 
 	return (
 		<div
-			className="w-1/2"
+			className="sm:w-full md:w-1/2"
 		>
 			<div
 				className="w-full flex justify-center"

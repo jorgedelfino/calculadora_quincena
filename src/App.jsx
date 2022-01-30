@@ -62,13 +62,16 @@ const App = () => {
 			/>
 			
 			<div
-				className='w-full flex'
+				className='w-full md:flex'
 			>
 				<Quincena
 					valorTotal={valorTotal}
 					mostrarValor={mostrarValor}
 				/>
-				<Extras/>
+				<Extras
+					valorTotal={valorTotal}
+					mostrarValor={mostrarValor}
+				/>
 			</div>
 		</div>
 	)

@@ -1,5 +1,3 @@
-import { setState, useEffect, useState } from 'react'
-
 const Categoria = ({
 	mostrarValor,
 	valorTotal,
@@ -11,7 +9,7 @@ const Categoria = ({
 		className="w-full py-5"
 		>
 			<form
-				className="flex justify-center"
+				className="flex flex-col items-center md:flex-row justify-center"
 			>
 				<select
 					name="categoria"
@@ -31,7 +29,7 @@ const Categoria = ({
 				<select
 					name="antiguedad"
 					id="categoria"
-					className="border rounded-md border-gray-300 bg-gray-50 mx-3 py-2 px-4"
+					className="border rounded-md border-gray-300 bg-gray-50 mt-6 md:mt-0 mx-3 py-2 px-4"
 					onChange={ e => setAntiguedad(Number(e.target.value)) }
 					>
 					<option value="0">-- Seleccione su Antigüedad --</option>
