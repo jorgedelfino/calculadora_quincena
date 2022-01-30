@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Categoria from './components/Categoria'
 import Quincena from './components/Quincena'
 import Extras from './components/Extras'
+import Copyright from './components/Copyright'
 
 import db from '../db/db'
 
@@ -45,35 +46,39 @@ const App = () => {
 	}, [categoria, antiguedad])
 
 	return (
-		<div
-			className='container mx-auto py-6'
-		>
-			<div className='w-full mb-5 flex justify-center'>
-				<h1
-					className='font-bold uppercase text-4xl text-center py-3 px-4 bg-red-600 text-white'
-				>Calculadora Sueldo</h1>
-			</div>
-
-			<Categoria
-				mostrarValor={mostrarValor}
-				valorTotal={valorTotal}
-				setCategoria={setCategoria}
-				setAntiguedad={setAntiguedad}
-			/>
-			
+		<>
 			<div
-				className='w-full md:flex'
+				className='container mx-auto py-6'
 			>
-				<Quincena
-					valorTotal={valorTotal}
+				<div className='w-full mb-5 flex justify-center'>
+					<h1
+						className='font-bold uppercase text-4xl text-center py-3 px-4 bg-red-600 text-white'
+					>Calculadora Sueldo</h1>
+				</div>
+
+				<Categoria
 					mostrarValor={mostrarValor}
-				/>
-				<Extras
 					valorTotal={valorTotal}
-					mostrarValor={mostrarValor}
+					setCategoria={setCategoria}
+					setAntiguedad={setAntiguedad}
 				/>
+				
+				<div
+					className='w-full md:flex'
+				>
+					<Quincena
+						valorTotal={valorTotal}
+						mostrarValor={mostrarValor}
+					/>
+					<Extras
+						valorTotal={valorTotal}
+						mostrarValor={mostrarValor}
+					/>
+				</div>
+
 			</div>
-		</div>
+			<Copyright/>
+		</>
 	)
 }
 
