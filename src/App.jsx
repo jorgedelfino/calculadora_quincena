@@ -48,11 +48,11 @@ const App = () => {
 	return (
 		<>
 			<div
-				className='container mx-auto py-6'
+				className='md:container mx-auto pb-6 md:py-6'
 			>
 				<div className='w-full mb-5 flex justify-center'>
 					<h1
-						className='font-bold uppercase text-4xl text-center py-3 px-4 bg-red-600 text-white'
+						className='font-bold uppercase text-4xl text-center py-3 px-4 bg-red-600 text-white w-full md:w-auto'
 					>Calculadora Sueldo</h1>
 				</div>
 

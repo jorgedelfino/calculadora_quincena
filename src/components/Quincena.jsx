@@ -104,15 +104,17 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 				<div className='py-3'>
 					<p>Quincena de 
 						<select
-							defaultValue={dias}
+							defaultValue={10}
 							name="dias"
 							id="dias"
 							className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1"
 							onChange={handleQuincena}
 						>
+							<option value="9">9</option>
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
+							<option value="13">13</option>
 						</select>
 						días
 					</p>
@@ -132,7 +134,6 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 						<input
 							type="number"
 							className='border rounded-md border-gray-300 bg-gray-50 m-1 p-1'
-							value={bonificacion}
 							onChange={handleBonificacion}
 						/>
 					)}
@@ -173,7 +174,7 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 			
 			{totalNeto !== 0 && (
 				<div
-					className='w-full text-center font-bold text-2xl px-4'
+					className='w-full text-center font-bold text-2xl px-4 mb-10 md:mb-0'
 				>
 					<p
 						className='bg-blue-600 text-white py-4 rounded-sm'
