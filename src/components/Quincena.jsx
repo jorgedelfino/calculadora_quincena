@@ -61,8 +61,9 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 			setTotalNoRemun(valorBonificacion + valorNoRemunerativo)
 		} else {
 			setTotalNoRemun(valorNoRemunerativo)
+			setValorBonificacion(0)
 		}
-	}, [valorBonificacion, valorNoRemunerativo])
+	}, [valorBonificacion, valorNoRemunerativo, hayBonificacion])
 
 	useEffect(() => {
 		if (hayAporteObraSocial) {
