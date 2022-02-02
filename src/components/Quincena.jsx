@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 
 const Quincena = ({ valorTotal, mostrarValor }) => {
 
+	const [modoVacaciones, setModoVacaciones] = useState(false)
+
 	const [dias, setDias] = useState(10)
 	const [valorDias, setValorDias] = useState(0)
 	const [valorPresentismo, setValorPresentismo] = useState(0)
@@ -29,6 +31,10 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 	const [hayAporteObraSocial, setHayAporteObraSocial] = useState(true)
 	const [hayAporteSindicato, setHayAporteSindicato] = useState(false)
 
+	const handleClick = () => {
+		setModoVacaciones(!modoVacaciones)
+	}
+
 	const handleQuincena = e => {
 		const cantidadDias = Number(e.target.value)
 		setDias(cantidadDias)
@@ -51,6 +57,10 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 			setValorPresentismo(((valorDia) * 11) / 100)
 		}
 	}
+
+	useEffect(() => {
+		setDias(modoVacaciones ? 14 : 10)
+	}, [modoVacaciones])
 
 	useEffect(() => {
 		setTotalRemun(valorDias + valorPresentismo)
@@ -99,27 +109,43 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 				className="w-full flex justify-center"
 			>
 				<h2
-					className="text-center text-2xl uppercase font-bold bg-red-600 text-white py-1 px-4"			
-				>Quincena</h2>
+					className="text-center text-2xl uppercase font-bold bg-red-600 text-white py-1 px-4 cursor-pointer"
+					onClick={handleClick}		
+				>
+					{modoVacaciones ? 'Vacaciones' : 'Quincena'}
+				</h2>
 			</div>
 			<form
 				className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center'
 				onSubmit={handleSubmit}
 			>
 				<div className='py-3'>
-					<p>Quincena de 
+					<p>
+						{modoVacaciones ? 'Vacaciones' : 'Quincena'} de
 						<select
-							defaultValue={10}
+							defaultValue={dias}
+							value={dias}
 							name="dias"
 							id="dias"
 							className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1"
 							onChange={handleQuincena}
 						>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
+							{modoVacaciones ? (
+								<>
+									<option value="14">14</option>
+									<option value="21">21</option>
+									<option value="28">28</option>
+									<option value="35">35</option>
+								</>
+							) : (
+								<>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+								</>
+							)}
 						</select>
 						días
 					</p>

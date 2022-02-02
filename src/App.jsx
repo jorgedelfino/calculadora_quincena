@@ -53,7 +53,7 @@ const App = () => {
 				<div className='w-full mb-5 flex justify-center'>
 					<h1
 						className='font-bold uppercase text-4xl text-center py-3 px-4 bg-red-600 text-white w-full md:w-auto'
-					>Calculadora Sueldo</h1>
+					>Calculadora Quincena</h1>
 				</div>
 
 				<Categoria
