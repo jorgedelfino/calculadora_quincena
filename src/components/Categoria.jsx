@@ -55,7 +55,7 @@ const Categoria = ({
 				</select>
 			</form>
 			<div
-				className="w-full py-5 flex justify-center">
+				className="container w-full mx-auto py-5 flex justify-center">
 			{mostrarValor && (
 				<p
 					className="text-center text-lg bg-blue-300 py-2 px-4 rounded-md border-4 border-blue-500"
@@ -65,8 +65,9 @@ const Categoria = ({
 
 			{!mostrarValor && (
 				<p
-					className="text-center text-lg bg-blue-300 py-2 px-4 rounded-md border-4 border-blue-500"
-				>Seleccione una Categoría
+					className="text-center text-lg md:w-1/2 bg-yellow-300 py-2 px-4 rounded-md border-4 border-yellow-500"
+				>
+					Esta aplicación solo sirve para calcular aproximadamente la quincena trabajando en el frigorífico <span className="uppercase font-bold">FEPASA</span>
 				</p>
 			)}
 			</div>

@@ -26,7 +26,7 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 	const [hayBonificacion, setHayBonificacion] = useState(false)
 	const [bonificacion, setBonificacion] = useState(0)
 
-	const [hayAporteObraSocial, setHayAporteObraSocial] = useState(false)
+	const [hayAporteObraSocial, setHayAporteObraSocial] = useState(true)
 	const [hayAporteSindicato, setHayAporteSindicato] = useState(false)
 
 	const handleQuincena = e => {
@@ -67,16 +67,20 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 	useEffect(() => {
 		if (hayAporteObraSocial) {
 			setValorAporteObraSocial(totalRemun / 100 * 3.2)
+		} else {
+			setValorAporteObraSocial(0)
 		}
 
 		if (hayAporteSindicato) {
 			setValorAporteSindicato(totalRemun / 100 * 2.2)
+		} else {
+			setValorAporteSindicato(0)
 		}
 
 		setValorAporteJubilacion(totalRemun / 100 * 11)
 		setValorAporte19032(totalRemun / 100 * 3)
 		setValorAporteSolidario(totalRemun / 100 * 2.2)
-	}, [totalRemun])
+	}, [hayAporteObraSocial, hayAporteSindicato, totalRemun])
 
 	useEffect(() => {
 		setTotalDeducciones(valorAporteObraSocial + valorAporteSindicato + valorAporteJubilacion + valorAporte19032 + valorAporteSolidario)
@@ -120,20 +124,23 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 					</p>
 				</div>
 				<div className='py-3'>
-					<label
-						htmlFor="hayBonificacion"
-					>Bonificación</label>
-					<input
-						id='hayBonificacion'
-						type="checkbox"
-						value={hayBonificacion}
-						onChange={() => setHayBonificacion(!hayBonificacion)}
-						className='h-4 w-4 mx-2'
-					/>
+					<div
+						className='text-center'
+					>
+						<label
+							htmlFor="hayBonificacion"
+						>Bonificación</label>
+						<input
+							id='hayBonificacion'
+							type="checkbox"
+							onChange={() => setHayBonificacion(!hayBonificacion)}
+							className='h-4 w-4 mx-2'
+						/>
+					</div>
 					{hayBonificacion && (
 						<input
 							type="number"
-							className='border rounded-md border-gray-300 bg-gray-50 m-1 p-1'
+							className='border rounded-md border-gray-300 bg-gray-50 m-1 mt-4 p-1'
 							onChange={handleBonificacion}
 						/>
 					)}
@@ -145,7 +152,7 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 					<input
 						id='hayObraSocial'
 						type="checkbox"
-						value={hayAporteObraSocial}
+						checked={hayAporteObraSocial}
 						className='h-4 w-4 mx-2'
 						onChange={() => setHayAporteObraSocial(!hayAporteObraSocial)}
 					/>
@@ -157,7 +164,6 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 					<input
 						id='haySindicato'
 						type="checkbox"
-						value={hayAporteSindicato}
 						className='h-4 w-4 mx-2'
 						onChange={() => setHayAporteSindicato(!hayAporteSindicato)}
 					/>
