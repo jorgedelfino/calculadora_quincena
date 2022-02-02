@@ -67,7 +67,7 @@ const Categoria = ({
 				<p
 					className="text-center text-lg md:w-1/2 bg-yellow-300 py-2 px-4 rounded-md border-4 border-yellow-500"
 				>
-					Esta aplicación solo sirve para calcular aproximadamente la quincena trabajando en el frigorífico <span className="uppercase font-bold">FEPASA</span>
+					Esta aplicación solo sirve para calcular aproximadamente la quincena del <br /> <span className="uppercase font-bold">convenio colectivo de trabajo n° 607/10</span>
 				</p>
 			)}
 			</div>
