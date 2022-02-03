@@ -28,6 +28,10 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 	const [hayBonificacion, setHayBonificacion] = useState(false)
 	const [bonificacion, setBonificacion] = useState(0)
 
+	const [hayCuotaAlimentaria, setHayCuotaAlimentaria] = useState(false)
+	const [cuotaAlimentaria, setCuotaAlimentaria] = useState(0)
+	const [valorCuotaAlimentaria, setValorCuotaAlimentaria] = useState(0)
+
 	const [hayAporteObraSocial, setHayAporteObraSocial] = useState(true)
 	const [hayAporteSindicato, setHayAporteSindicato] = useState(false)
 
@@ -36,6 +40,9 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 	const handleLimpiar =  () => {
 		setHayBonificacion(false)
 		setBonificacion(0)
+		setHayCuotaAlimentaria(false)
+		setCuotaAlimentaria(0)
+		setValorCuotaAlimentaria(0)
 		setHayAporteObraSocial(true)
 		setHayAporteSindicato(false)
 		setLimpiar(true)
@@ -51,11 +58,15 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 		setBonificacion(cantidadBonificacion)
 	}
 
+	const handleCuotaAlimentaria = e => {
+		const nuevoPorcentajeCuotaAlimentaria = Number(e.target.value)
+		setCuotaAlimentaria(nuevoPorcentajeCuotaAlimentaria)
+	}
+
 	const handleSubmit = e => {
 		e.preventDefault()
 
 		setLimpiar(false)
-
 		setValorBonificacion(bonificacion)
 
 		if (dias) {
@@ -103,14 +114,20 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 			setValorAporteSindicato(0)
 		}
 
+		if (hayCuotaAlimentaria) {
+			setValorCuotaAlimentaria(totalRemun / 100 * cuotaAlimentaria)
+		} else {
+			setValorCuotaAlimentaria(0)
+		}
+
 		setValorAporteJubilacion(totalRemun / 100 * 11)
 		setValorAporte19032(totalRemun / 100 * 3)
 		setValorAporteSolidario(totalRemun / 100 * 2.2)
-	}, [hayAporteObraSocial, hayAporteSindicato, totalRemun])
+	}, [hayCuotaAlimentaria, hayAporteObraSocial, hayAporteSindicato, cuotaAlimentaria, totalRemun])
 
 	useEffect(() => {
-		setTotalDeducciones(valorAporteObraSocial + valorAporteSindicato + valorAporteJubilacion + valorAporte19032 + valorAporteSolidario)
-	}, [valorAporteSolidario, valorAporteJubilacion, valorAporte19032, valorAporteObraSocial, valorAporteSindicato])
+		setTotalDeducciones(valorAporteObraSocial + valorAporteSindicato + valorAporteJubilacion + valorAporte19032 + valorAporteSolidario + valorCuotaAlimentaria)
+	}, [valorAporteSolidario, valorAporteJubilacion, valorAporte19032, valorAporteObraSocial, valorAporteSindicato, valorCuotaAlimentaria])
 
 	useEffect(() => {
 		if (limpiar) {
@@ -122,7 +139,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 	}, [totalDeducciones, totalNoRemun, totalRemun, limpiar])
 
 	useEffect(() => {
-		if (horaFrio || modoVacaciones && totalNeto !== 0) {
+		if (horaFrio || modoVacaciones) {
 			handleLimpiar()
 		}
 	}, [horaFrio, modoVacaciones])
@@ -208,6 +225,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 								<input
 									id='hayBonificacion'
 									type="checkbox"
+									checked={hayBonificacion}
 									onChange={() => setHayBonificacion(!hayBonificacion)}
 									className='h-4 w-4 mx-2'
 								/>
@@ -220,6 +238,32 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 									type="number"
 									className='border rounded-md border-gray-300 bg-gray-50 m-1 mt-4 p-1'
 									onChange={handleBonificacion}
+								/>
+							)}
+						</div>
+						<div className='py-3 flex flex-col'>
+							<div
+								className='text-center'
+							>
+								<label
+									htmlFor="hayCuotaAlimentaria"
+								>Cuota Alimentaria</label>
+								<input
+									id='hayCuotaAlimentaria'
+									type="checkbox"
+									checked={hayCuotaAlimentaria}
+									onChange={() => setHayCuotaAlimentaria(!hayCuotaAlimentaria)}
+									className='h-4 w-4 mx-2'
+								/>
+							</div>
+							{hayCuotaAlimentaria && (
+								<input
+									min={0}
+									max={100}
+									value={cuotaAlimentaria > 0 && cuotaAlimentaria}
+									type="number"
+									className='border rounded-md border-gray-300 bg-gray-50 m-1 mt-4 p-1'
+									onChange={handleCuotaAlimentaria}
 								/>
 							)}
 						</div>
