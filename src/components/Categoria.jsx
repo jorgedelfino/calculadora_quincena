@@ -1,13 +1,8 @@
-import ColdImgBlack from '../img/01-cold.png'
-import ColdImgWhite from '../img/02-cold.png'
-
 const Categoria = ({
 	mostrarValor,
 	valorTotal,
-	horaFrio,
 	setCategoria,
-	setAntiguedad,
-	setHoraFrio}) => {
+	setAntiguedad}) => {
 
 	return (
 		<div
@@ -60,34 +55,30 @@ const Categoria = ({
 				</select>
 			</form>
 			<div
-				className="container w-full mx-auto py-5 flex justify-center">
+				className={`container w-full mx-auto py-5 flex justify-center ${!mostrarValor && 'flex-col items-center'}`}>
 			{mostrarValor && (
-				<div
-					className='flex'
-				>
-					<p
-						className="text-center text-lg bg-blue-300 py-2 px-4 ml-6 rounded-md border-4 border-blue-500"
-					>Precio/Hora: <span className="font-bold">${valorTotal.remunerativo}</span> + <span className="font-bold">${valorTotal.noRemunerativo}</span>
-					</p>
-					<div
-						className={`text-center cursor-pointer ml-5 border-2 p-2 rounded-full transition-all delay-200 ${horaFrio ? 'bg-blue-400 border-blue-300' : 'border-white'}`}
-						onClick={() => setHoraFrio(!horaFrio)}
-					>
-						<img
-							src={horaFrio ? ColdImgWhite : ColdImgBlack}
-							alt="frio"
-							className='h-8'
-						/>
-					</div>
-				</div>				
+				<p
+					className="text-center text-lg bg-blue-300 py-4 px-6 rounded-md border-4 border-blue-500"
+				>Precio/Hora: <span className="font-bold">${valorTotal.remunerativo}</span> + <span className="font-bold">${valorTotal.noRemunerativo}</span>
+				</p>	
 			)}
 
 			{!mostrarValor && (
-				<p
-					className="text-center text-lg md:w-1/2 bg-yellow-300 py-2 px-4 rounded-md border-4 border-yellow-500"
-				>
-					Esta aplicación solo sirve para calcular aproximadamente la quincena del <br /> <span className="uppercase font-bold">convenio colectivo de trabajo n° 607/10</span>
-				</p>
+				<>
+					<p
+						className="text-center text-lg md:w-1/2 bg-green-300 py-4 px-6 rounded-md border-4 border-green-500 my-8"
+					>
+						<span
+							className="uppercase font-bold"
+						>¡Bienvenido a la Calculadora de Quincena!</span> <br />
+						Para empezar seleccione su Categoría y su Antigüedad
+					</p>
+					<p
+						className="text-center text-lg md:w-1/2 bg-yellow-300 py-4 px-6 rounded-md border-4 border-yellow-500"
+					>
+						Esta aplicación solo sirve para calcular aproximadamente la quincena del <br /> <span className="uppercase font-bold">convenio colectivo de trabajo n° 607/10</span>
+					</p>
+				</>
 			)}
 			</div>
 		</div>

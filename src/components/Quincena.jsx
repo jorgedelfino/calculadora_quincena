@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const Quincena = ({ valorTotal, mostrarValor, horaFrio }) => {
-
-	const [modoVacaciones, setModoVacaciones] = useState(false)
+const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 
 	const [dias, setDias] = useState(10)
 	const [valorDias, setValorDias] = useState(0)
@@ -30,10 +28,6 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio }) => {
 
 	const [hayAporteObraSocial, setHayAporteObraSocial] = useState(true)
 	const [hayAporteSindicato, setHayAporteSindicato] = useState(false)
-
-	const handleClick = () => {
-		setModoVacaciones(!modoVacaciones)
-	}
 
 	const handleQuincena = e => {
 		const cantidadDias = Number(e.target.value)
@@ -117,9 +111,11 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio }) => {
 			>
 				<h2
 					className="text-center text-2xl uppercase font-bold bg-red-600 text-white py-1 px-4 cursor-pointer"
-					onClick={handleClick}		
+					style={{
+						boxShadow: horaFrio && '0px 0px 50px 30px #31c4fe'
+					}}
 				>
-					{modoVacaciones ? 'Vacaciones' : 'Quincena'}
+					{modoVacaciones ? 'Vacaciones' : 'Quincena'} {horaFrio && 'Frio'}
 				</h2>
 			</div>
 			<form

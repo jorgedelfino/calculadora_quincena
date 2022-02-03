@@ -29,8 +29,11 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 				className="w-full flex justify-center"
 			>
 				<h2
-					className="text-center text-2xl uppercase font-bold bg-red-600 text-white py-1 px-4"			
-				>Extras</h2>
+					className="text-center text-2xl uppercase font-bold bg-red-600 text-white py-1 px-4"
+					style={{
+						boxShadow: horaFrio && '0px 0px 50px 30px #31c4fe'
+					}}			
+				>Extras {horaFrio && 'Frio'}</h2>
 			</div>
 			<form
 				className="p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center"

@@ -4,6 +4,7 @@ import Categoria from './components/Categoria'
 import Quincena from './components/Quincena'
 import Extras from './components/Extras'
 import Copyright from './components/Copyright'
+import Buttons from './components/Buttons'
 
 import db from '../db/db'
 
@@ -13,7 +14,9 @@ const App = () => {
 	const [antiguedad, setAntiguedad] = useState(0)
 	const [mostrarValor, setMostrarValor] = useState(false)
 	const [valorTotal, setValorTotal] = useState({})
+
 	const [horaFrio, setHoraFrio] = useState(false)
+	const [modoVacaciones, setModoVacaciones] = useState(false)
 
 	useEffect(() => {
 		if (categoria) {
@@ -66,23 +69,42 @@ const App = () => {
 					setHoraFrio={setHoraFrio}
 				/>
 				
-				<div
-					className='w-full md:flex'
-				>
-					<Quincena
-						valorTotal={valorTotal}
-						mostrarValor={mostrarValor}
-						horaFrio={horaFrio}
-					/>
-					<Extras
-						valorTotal={valorTotal}
-						mostrarValor={mostrarValor}
-						horaFrio={horaFrio}
-					/>
-				</div>
+				{
+					mostrarValor && (
+						<>
+							<div
+								className='w-full md:flex'
+							>
+								<Quincena
+									valorTotal={valorTotal}
+									mostrarValor={mostrarValor}
+									horaFrio={horaFrio}
+									modoVacaciones={modoVacaciones}
+								/>
+								<Extras
+									valorTotal={valorTotal}
+									mostrarValor={mostrarValor}
+									horaFrio={horaFrio}
+								/>
+							</div>
+						</>
+					)
+				}
 
 			</div>
-			<Copyright/>
+			
+			{mostrarValor &&
+				<Buttons
+					horaFrio={horaFrio}
+					setHoraFrio={setHoraFrio}
+					modoVacaciones={modoVacaciones}
+					setModoVacaciones={setModoVacaciones}
+				/>
+			}
+
+			<Copyright
+				mostrarValor={mostrarValor}
+			/>
 		</>
 	)
 }
