@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import CleanImg from '../img/clean.png'
+
 
 const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 
@@ -7,8 +10,12 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 
 	const [totalExtras, setTotalExtras] = useState(0)
 
+	const [limpiar, setLimpiar] = useState(false)
+
 	const handleSubmit = e => {
 		e.preventDefault()
+
+		setLimpiar(false)
 
 		const nuevaHora = Number(horas) + Number(minutos)
 		const nuevoValorHora = Number(valorTotal.remunerativo) + Number(valorTotal.noRemunerativo)
@@ -20,6 +27,19 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 			setTotalExtras(nuevoTotalExtras)
 		}
 	}
+
+	const handleLimpiar =  () => {
+		setHoras(0)
+		setMinutos(0)
+		setTotalExtras(0)
+		setLimpiar(true)
+	}
+
+	useEffect(() => {
+		if (horaFrio && totalExtras !== 0) {
+			handleLimpiar()
+		}
+	}, [horaFrio])
 
 	return (
 		<div
@@ -35,55 +55,71 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 					}}			
 				>Extras {horaFrio && 'Frio'}</h2>
 			</div>
-			<form
-				className="p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center"
-				onSubmit={handleSubmit}
-			>
-				<div className="py-3">
-					<input
-						type="number"
-						id="horas"
-						className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1 w-32"
-						onChange={e => setHoras(e.target.value)}
-					/>
-					<label htmlFor="horas"> Horas.</label>
-				</div>
-				<div className="py-3">
-					<p>
-						<select
-							name="minutos"
-							id="minutos"
-							className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1"
-							onChange={e => setMinutos(e.target.value)}
-						>
-							<option value={0}>0</option>
-							<option value={0.25}>15</option>
-							<option value={0.5}>30</option>
-							<option value={0.75}>45</option>
-						</select>
-						 Minutos.
-					</p>
-				</div>
-				<div className='text-center py-3'>
-					<input
-						type="submit"
-						value="Calcular"
-						disabled={mostrarValor ? false : true}
-						className='bg-blue-500 text-white py-2 px-4 rounded-md uppercase cursor-pointer disabled:bg-gray-400'
-					/>
-				</div>
-			</form>
-
-			{totalExtras !== 0 && (
-				<div
-					className='w-full text-center font-bold text-2xl px-4'
-				>
-					<p
-						className='bg-blue-600 text-white py-4 rounded-sm'
-					>${totalExtras}</p>
-				</div>
-			)}
 			
+			{
+				totalExtras ? (
+					<div
+						className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center bg-blue-500'
+					>
+						<p
+							className='text-white pb-10'
+						>El valor estimado de sus horas extras es de:</p>
+						<span
+							className='uppercase font-bold text-3xl text-white'
+						>$ {totalExtras}</span>
+
+						<button
+							className='bg-red-600 text-white py-2 px-4 rounded-md uppercase cursor-pointer mt-14 flex items-center'
+							onClick={handleLimpiar}
+						>
+							Limpiar <img className='h-5 ml-2 inline' src={CleanImg}/>
+						</button>
+					</div>
+				) : (
+					<form
+						className="p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center"
+						onSubmit={handleSubmit}
+					>
+						<div className="py-3">
+							<input
+								min={0}
+								max={99}
+								value={horas > 0 && horas}
+								type="number"
+								id="horas"
+								className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1 w-32"
+								onChange={e => setHoras(e.target.value)}
+							/>
+							<label htmlFor="horas"> Horas.</label>
+						</div>
+						<div className="py-3">
+							<p>
+								<select
+									name="minutos"
+									id="minutos"
+									className="border rounded-md border-gray-300 bg-gray-50 m-1 p-1"
+									onChange={e => setMinutos(e.target.value)}
+								>
+									<option value={0}>0</option>
+									<option value={0.25}>15</option>
+									<option value={0.5}>30</option>
+									<option value={0.75}>45</option>
+								</select>
+								Minutos.
+							</p>
+						</div>
+						<div className='text-center py-3'>
+							<input
+								type="submit"
+								value="Calcular"
+								disabled={mostrarValor ? false : true}
+								className='bg-blue-500 text-white py-2 px-4 rounded-md uppercase cursor-pointer disabled:bg-gray-400'
+							/>
+						</div>
+					</form>
+				)
+			}
+	
 		</div>
 	)
 };

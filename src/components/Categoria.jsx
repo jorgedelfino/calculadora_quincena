@@ -59,7 +59,7 @@ const Categoria = ({
 			{mostrarValor && (
 				<p
 					className="text-center text-lg bg-blue-300 py-4 px-6 rounded-md border-4 border-blue-500"
-				>Precio/Hora: <span className="font-bold">${valorTotal.remunerativo}</span> + <span className="font-bold">${valorTotal.noRemunerativo}</span>
+				>Precio/Hora: <span className="font-bold text-xl">${valorTotal.remunerativo}</span> + <span className="font-bold text-xl">${valorTotal.noRemunerativo}</span>
 				</p>	
 			)}
 
