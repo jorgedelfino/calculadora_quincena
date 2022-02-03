@@ -13,6 +13,7 @@ const App = () => {
 	const [antiguedad, setAntiguedad] = useState(0)
 	const [mostrarValor, setMostrarValor] = useState(false)
 	const [valorTotal, setValorTotal] = useState({})
+	const [horaFrio, setHoraFrio] = useState(false)
 
 	useEffect(() => {
 		if (categoria) {
@@ -59,8 +60,10 @@ const App = () => {
 				<Categoria
 					mostrarValor={mostrarValor}
 					valorTotal={valorTotal}
+					horaFrio={horaFrio}
 					setCategoria={setCategoria}
 					setAntiguedad={setAntiguedad}
+					setHoraFrio={setHoraFrio}
 				/>
 				
 				<div
@@ -69,10 +72,12 @@ const App = () => {
 					<Quincena
 						valorTotal={valorTotal}
 						mostrarValor={mostrarValor}
+						horaFrio={horaFrio}
 					/>
 					<Extras
 						valorTotal={valorTotal}
 						mostrarValor={mostrarValor}
+						horaFrio={horaFrio}
 					/>
 				</div>
 

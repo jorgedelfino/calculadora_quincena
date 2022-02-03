@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Extras = ({ valorTotal, mostrarValor }) => {
+const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 
 	const [horas, setHoras] = useState(0)
 	const [minutos, setMinutos] = useState(0)
@@ -12,9 +12,13 @@ const Extras = ({ valorTotal, mostrarValor }) => {
 
 		const nuevaHora = Number(horas) + Number(minutos)
 		const nuevoValorHora = Number(valorTotal.remunerativo) + Number(valorTotal.noRemunerativo)
-		const nuevoTotalExtras = (((nuevoValorHora * nuevaHora) * 1.5) * 1.11).toFixed(2)
-		
-		setTotalExtras(nuevoTotalExtras)
+		if (horaFrio) {
+			const nuevoTotalExtras = ((((nuevoValorHora * nuevaHora) * 1.5) * 1.11) * 1.33).toFixed(2)
+			setTotalExtras(nuevoTotalExtras)
+		} else {
+			const nuevoTotalExtras = (((nuevoValorHora * nuevaHora) * 1.5) * 1.11).toFixed(2)
+			setTotalExtras(nuevoTotalExtras)
+		}
 	}
 
 	return (

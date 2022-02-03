@@ -1,8 +1,13 @@
+import ColdImgBlack from '../img/01-cold.png'
+import ColdImgWhite from '../img/02-cold.png'
+
 const Categoria = ({
 	mostrarValor,
 	valorTotal,
+	horaFrio,
 	setCategoria,
-	setAntiguedad}) => {
+	setAntiguedad,
+	setHoraFrio}) => {
 
 	return (
 		<div
@@ -57,10 +62,24 @@ const Categoria = ({
 			<div
 				className="container w-full mx-auto py-5 flex justify-center">
 			{mostrarValor && (
-				<p
-					className="text-center text-lg bg-blue-300 py-2 px-4 rounded-md border-4 border-blue-500"
-				>Precio/Hora: <span className="font-bold">${valorTotal.remunerativo}</span> + <span className="font-bold">${valorTotal.noRemunerativo}</span>
-				</p>				
+				<div
+					className='flex'
+				>
+					<p
+						className="text-center text-lg bg-blue-300 py-2 px-4 ml-6 rounded-md border-4 border-blue-500"
+					>Precio/Hora: <span className="font-bold">${valorTotal.remunerativo}</span> + <span className="font-bold">${valorTotal.noRemunerativo}</span>
+					</p>
+					<div
+						className={`text-center cursor-pointer ml-5 border-2 p-2 rounded-full transition-all delay-200 ${horaFrio ? 'bg-blue-400 border-blue-300' : 'border-white'}`}
+						onClick={() => setHoraFrio(!horaFrio)}
+					>
+						<img
+							src={horaFrio ? ColdImgWhite : ColdImgBlack}
+							alt="frio"
+							className='h-8'
+						/>
+					</div>
+				</div>				
 			)}
 
 			{!mostrarValor && (

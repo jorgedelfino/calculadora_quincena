@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const Quincena = ({ valorTotal, mostrarValor }) => {
+const Quincena = ({ valorTotal, mostrarValor, horaFrio }) => {
 
 	const [modoVacaciones, setModoVacaciones] = useState(false)
 
@@ -51,10 +51,17 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 		setValorBonificacion(bonificacion)
 
 		if (dias) {
-			const valorDia = valorTotal.remunerativo * dias * 9
-			setValorDias(valorDia)
-			setValorNoRemunerativo((valorTotal.noRemunerativo * dias * 9) * 1.11)
-			setValorPresentismo(((valorDia) * 11) / 100)
+			if (horaFrio) {
+				const valorDia = (valorTotal.remunerativo * dias * 9) * 1.33
+				setValorDias(valorDia)
+				setValorNoRemunerativo(((valorTotal.noRemunerativo * dias * 9) * 1.11) * 1.33)
+				setValorPresentismo(((valorDia) * 11) / 100)
+			} else {
+				const valorDia = valorTotal.remunerativo * dias * 9
+				setValorDias(valorDia)
+				setValorNoRemunerativo((valorTotal.noRemunerativo * dias * 9) * 1.11)
+				setValorPresentismo(((valorDia) * 11) / 100)
+			}
 		}
 	}
 
@@ -123,7 +130,6 @@ const Quincena = ({ valorTotal, mostrarValor }) => {
 					<p>
 						{modoVacaciones ? 'Vacaciones' : 'Quincena'} de
 						<select
-							defaultValue={dias}
 							value={dias}
 							name="dias"
 							id="dias"
