@@ -59,7 +59,7 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 			{
 				totalExtras ? (
 					<div
-						className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center bg-blue-500'
+						className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center bg-blue-500 text-center'
 					>
 						<p
 							className='text-white pb-10'

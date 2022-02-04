@@ -119,7 +119,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 		} else {
 			setValorCuotaAlimentaria(0)
 		}
-
+		
 		setValorAporteJubilacion(totalRemun / 100 * 11)
 		setValorAporte19032(totalRemun / 100 * 3)
 		setValorAporteSolidario(totalRemun / 100 * 2.2)
@@ -134,7 +134,6 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 			setTotalNeto(0)
 		} else {
 			setTotalNeto(Number((totalRemun + totalNoRemun - totalDeducciones).toFixed(2)))
-
 		}
 	}, [totalDeducciones, totalNoRemun, totalRemun, limpiar])
 
@@ -164,7 +163,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 			{
 				totalNeto !== 0 ? (
 					<div
-						className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center bg-blue-500'
+						className='p-6 text-xl uppercase border-2 rounded-md m-2 flex flex-col items-center bg-blue-500 text-center'
 					>
 						<p
 							className='text-white pb-10'
@@ -235,6 +234,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 									min={0}
 									max={99999}
 									value={bonificacion > 0 && bonificacion}
+									placeholder='$'
 									type="number"
 									className='border rounded-md border-gray-300 bg-gray-50 m-1 mt-4 p-1'
 									onChange={handleBonificacion}
@@ -262,6 +262,7 @@ const Quincena = ({ valorTotal, mostrarValor, horaFrio, modoVacaciones }) => {
 									max={100}
 									value={cuotaAlimentaria > 0 && cuotaAlimentaria}
 									type="number"
+									placeholder='%'
 									className='border rounded-md border-gray-300 bg-gray-50 m-1 mt-4 p-1'
 									onChange={handleCuotaAlimentaria}
 								/>
