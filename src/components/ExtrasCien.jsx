@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import CleanImg from '../img/clean.png'
 
 
-const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
+const ExtrasCien = ({ valorTotal, mostrarValor, horaFrio }) => {
 
 	const [horas, setHoras] = useState(0)
 	const [minutos, setMinutos] = useState(0)
@@ -20,10 +20,10 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 		const nuevaHora = Number(horas) + Number(minutos)
 		const nuevoValorHora = Number(valorTotal.remunerativo) + Number(valorTotal.noRemunerativo)
 		if (horaFrio) {
-			const nuevoTotalExtras = ((((nuevoValorHora * nuevaHora) * 1.5) * 1.11) * 1.33).toFixed(2)
+			const nuevoTotalExtras = ((((nuevoValorHora * nuevaHora) * 2) * 1.11) * 1.33).toFixed(2)
 			setTotalExtras(nuevoTotalExtras)
 		} else {
-			const nuevoTotalExtras = (((nuevoValorHora * nuevaHora) * 1.5) * 1.11).toFixed(2)
+			const nuevoTotalExtras = (((nuevoValorHora * nuevaHora) * 2) * 1.11).toFixed(2)
 			setTotalExtras(nuevoTotalExtras)
 		}
 	}
@@ -53,7 +53,7 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 					style={{
 						boxShadow: horaFrio && '0px 0px 50px 30px #31c4fe'
 					}}			
-				>Extras al 50% {horaFrio && 'Frio'}</h2>
+				>Extras al 100% {horaFrio && 'Frio'}</h2>
 			</div>
 			
 			{
@@ -124,4 +124,4 @@ const Extras = ({ valorTotal, mostrarValor, horaFrio }) => {
 	)
 };
 
-export default Extras;
+export default ExtrasCien;

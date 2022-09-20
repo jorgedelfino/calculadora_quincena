@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Categoria from './components/Categoria'
 import Quincena from './components/Quincena'
 import Extras from './components/Extras'
+import ExtrasCien from './components/ExtrasCien'
 import Copyright from './components/Copyright'
 import Buttons from './components/Buttons'
 
@@ -82,6 +83,11 @@ const App = () => {
 									modoVacaciones={modoVacaciones}
 								/>
 								<Extras
+									valorTotal={valorTotal}
+									mostrarValor={mostrarValor}
+									horaFrio={horaFrio}
+								/>
+								<ExtrasCien
 									valorTotal={valorTotal}
 									mostrarValor={mostrarValor}
 									horaFrio={horaFrio}
