@@ -87,11 +87,11 @@ const App = () => {
 									mostrarValor={mostrarValor}
 									horaFrio={horaFrio}
 								/>
-								{/* <ExtrasCien
+								<ExtrasCien
 									valorTotal={valorTotal}
 									mostrarValor={mostrarValor}
 									horaFrio={horaFrio}
-								/> */}
+								/>
 							</div>
 						</>
 					)
