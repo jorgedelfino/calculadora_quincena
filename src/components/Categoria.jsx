@@ -74,9 +74,11 @@ const Categoria = ({
 						Para empezar seleccione su Categoría y su Antigüedad
 					</p>
 					<p
-						className="text-center text-lg md:w-1/2 bg-yellow-300 py-4 px-6 rounded-md border-4 border-yellow-500"
+						className="text-center text-lg md:w-1/2 bg-blue-300 py-4 px-6 rounded-md border-4 border-blue-500"
 					>
-						Esta aplicación solo sirve para calcular aproximadamente la quincena del <br /> <span className="uppercase font-bold">convenio colectivo de trabajo n° 607/10</span>
+						Ultima actualización <br /> <span className="uppercase font-bold">
+							17/05/2023
+						</span>
 					</p>
 				</>
 			)}
