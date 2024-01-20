@@ -77,7 +77,7 @@ const Categoria = ({
 						className="text-center text-lg md:w-1/2 bg-blue-300 py-4 px-6 rounded-md border-4 border-blue-500"
 					>
 						Ultima actualización <br /> <span className="uppercase font-bold">
-							16/12/2023
+							21/01/2023
 						</span>
 					</p>
 				</>
