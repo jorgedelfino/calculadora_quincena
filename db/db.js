@@ -9,12 +9,12 @@ export default  {
 			EB: 3934.30
 		},
 		noRemunerativo: {
-			OI: 0,
-			C: 0,
-			CA: 0,
-			E: 0,
-			EA: 0,
-			EB: 0
+			OI: 342.36,
+			C: 356.05,
+			CA: 372.07,
+			E: 390.68,
+			EA: 410.21,
+			EB: 432.77
 		}
 	}
 }
