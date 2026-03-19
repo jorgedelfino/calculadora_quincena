@@ -1,12 +1,12 @@
 export default  {
 	precios: {
 		remunerativo: {
-			OI: 6811.47,
-			C: 7083.93,
-			CA: 7402.71,
-			E: 7772.85,
-			EA: 8161.49,
-			EB: 8610.37
+			OI: 7157.6,
+			C: 7443.9,
+			CA: 7778.88,
+			E: 8167.82,
+			EA: 8576.21,
+			EB: 9047.9
 		},
 		noRemunerativo: {
 			OI: 0,
